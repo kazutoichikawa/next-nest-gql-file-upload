@@ -7,8 +7,8 @@ import { join } from 'path';
 @Resolver()
 export class AppResolver {
   @Query(() => String)
-  async getName(): Promise<string> {
-    return 'Coding by Anas';
+  async test(): Promise<string> {
+    return 'SUCCESS';
   }
 
   @Mutation(() => Boolean, { name: 'uploadImage' })
