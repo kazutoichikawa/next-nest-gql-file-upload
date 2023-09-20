@@ -18,14 +18,19 @@ const UploadFileForm: FC = () => {
   }, []);
 
   return (
-    <div style={{textAlign: 'center'}}>
-      <FormGroup style={{marginBottom: '10px'}}>
+    <div className='text-center'>
+      <FormGroup className='my-2.5'>
         <FormLabel htmlFor='input-file'>
           <Input id='input-file' type='file' style={{color: 'white'}} onChange={handleChangeInput} />
         </FormLabel>
       </FormGroup>
 
-      <Button style={{width: '500px'}} variant='contained' onClick={handleClickUploadFile}>
+      <Button
+        className='w-2/4'
+        variant='contained'
+        color='primary'
+        onClick={handleClickUploadFile}
+      >
         アップロード
       </Button>
     </div>
