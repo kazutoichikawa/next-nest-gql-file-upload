@@ -30,7 +30,12 @@ async function bootstrap() {
       }
       return callback(null, true);
     },
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: [
+      'Content-Type',
+      'Content-Disposition',
+      'Authorization',
+      'apollo-require-preflight',
+    ],
     credentials: true,
   });
 

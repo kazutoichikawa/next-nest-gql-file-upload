@@ -11,15 +11,12 @@ export class AppResolver {
     return 'SUCCESS';
   }
 
-  @Mutation(() => Boolean, { name: 'uploadImage' })
+  @Mutation(() => String, { name: 'uploadImage' })
   async uploadImage(
-    @Args({ name: 'image', type: () => GraphQLUpload })
-    image: Upload,
+    @Args({ name: 'file', type: () => GraphQLUpload }) file: Upload,
     @Args({ name: 'createFileInDirectory', type: () => Boolean })
     createFileInDirectory: boolean
   ) {
-    const file = await image;
-
     console.log('UPLOAD_IMAGE_CALLED', {
       file,
       createFileInDirectory,
@@ -28,7 +25,6 @@ export class AppResolver {
     return new Promise((resolve, reject) => {
       if (createFileInDirectory) {
         const dirPath = join(__dirname, '/uploads');
-
         if (!existsSync(dirPath)) {
           mkdirSync(dirPath, { recursive: true });
         }

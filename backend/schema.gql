@@ -7,7 +7,7 @@ type Query {
 }
 
 type Mutation {
-  uploadImage(image: Upload!, createFileInDirectory: Boolean!): Boolean!
+  uploadImage(file: Upload!, createFileInDirectory: Boolean!): String!
 }
 
 """The `Upload` scalar type represents a file upload."""

@@ -1,11 +1,33 @@
-import { FC, useCallback } from 'react';
+import { FC, useState, useCallback } from 'react';
 import { FormLabel, Button, Input, FormGroup } from '@mui/material';
+import { gql, useMutation } from '@apollo/client';
+
+const UPLOAD_FILE = gql`
+mutation UploadImage($file: Upload!, $createFileInDirectory: Boolean!) {
+  uploadImage(file: $file, createFileInDirectory: $createFileInDirectory)
+}
+`
 
 const UploadFileForm: FC = () => {
+  const [file, setFile] = useState<File>();
+  console.log(file);
+
+  const [uploadFile] = useMutation(UPLOAD_FILE, {
+    context: {
+      headers: {
+        'apollo-require-preflight': true,
+      },
+    },
+    onCompleted: (res) => {
+      console.log(200, res)
+    },
+    onError: (error) => {
+      console.log(error)
+    },
+  })
+
   const handleChangeInput = useCallback((e: any) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('file', file);
+    setFile(e.target.files[0])
 
     // TODO: 複数ファイルに対応
   }, []);
@@ -15,7 +37,14 @@ const UploadFileForm: FC = () => {
    */
   const handleClickUploadFile = useCallback((e: any) => {
     console.log('click');
-  }, []);
+    if (!file) {
+      return;
+    };
+
+    uploadFile({
+      variables: { file: file, createFileInDirectory: true },
+    })
+  }, [file]);
 
   return (
     <div className='text-center'>
