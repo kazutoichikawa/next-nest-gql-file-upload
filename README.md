@@ -16,7 +16,7 @@ ESmoduleのimportエラーが出るため@14を使う
 GraphQL Code Generatorを使う場合はscalar Uploadに対応する
 前段のschema.graphgalでscalar Uploadとして定義したものをFile型で扱うように定義しておきます
 
----------------------------------------------
+```
 codegen.yaml
 overwrite: true
 schema: "../backend/schema.graphql"
@@ -32,7 +32,7 @@ generates:
     config:
       scalars:
        Upload: File
----------------------------------------------
+```
 
 ## バックエンド
 ### ライブラリ
@@ -47,7 +47,7 @@ generates:
   - 画像ファイルをアップロード
   - バックエンドサーバーのログにファイル詳細と、成功ログが出たら、backend/dist/uploads/にファイルが生成される
 
----------------------------------------------
+```
 UPLOAD IMAGE CALLED {
   file: {
     filename: 'persaCremind.png',
@@ -58,5 +58,5 @@ UPLOAD IMAGE CALLED {
   createFileInDirectory: true
 }
 IMAGE CREATED IN DIRECTORY
----------------------------------------------
+```
 
