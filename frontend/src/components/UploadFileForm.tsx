@@ -44,7 +44,7 @@ const UploadFileForm: FC = () => {
       </FormGroup>
 
       <Button
-        className='w-2/4'
+        className='w-2/4 bg-sky-600'
         variant='contained'
         color='primary'
         onClick={handleClickUploadFile}
