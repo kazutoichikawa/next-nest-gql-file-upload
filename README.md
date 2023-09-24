@@ -48,6 +48,9 @@ generates:
   - バックエンドサーバーのログにファイル詳細と、成功ログが出たら、backend/dist/uploads/にファイルが生成される
 
 ```
+Backend Server Log
+
+// ファイル詳細ログ
 UPLOAD IMAGE CALLED {
   file: {
     filename: 'persaCremind.png',
@@ -57,6 +60,7 @@ UPLOAD IMAGE CALLED {
   },
   createFileInDirectory: true
 }
-IMAGE CREATED IN DIRECTORY
+
+IMAGE CREATED IN DIRECTORY // アップロード成功ログ
 ```
 
