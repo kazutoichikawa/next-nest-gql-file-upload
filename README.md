@@ -38,7 +38,25 @@ generates:
 ### ライブラリ
  - graphql-upload-ts
    - 最新バージョンを使うとインポートエラーが出るため、14を使用して実装している人が多い
-   
+
 ### 実装
  - fileの型を定義(backend/src/file.entity.ts)
  - middleware定義(backend/src/main.ts R42)
+
+ ## テスト方法
+  - 画像ファイルをアップロード
+  - バックエンドサーバーのログにファイル詳細と、成功ログが出たら、backend/dist/uploads/にファイルが生成される
+
+---------------------------------------------
+UPLOAD IMAGE CALLED {
+  file: {
+    filename: 'persaCremind.png',
+    mimetype: 'image/png',
+    encoding: '7bit',
+    createReadStream: [Function: createReadStream]
+  },
+  createFileInDirectory: true
+}
+IMAGE CREATED IN DIRECTORY
+---------------------------------------------
+
