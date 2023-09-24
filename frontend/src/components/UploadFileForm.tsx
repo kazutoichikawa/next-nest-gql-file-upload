@@ -10,33 +10,22 @@ mutation UploadImage($file: Upload!, $createFileInDirectory: Boolean!) {
 
 const UploadFileForm: FC = () => {
   const [file, setFile] = useState<File>();
-  console.log(file);
-
   const [uploadFile] = useMutation(UPLOAD_FILE, {
     context: {
       headers: {
         'apollo-require-preflight': true,
       },
     },
-    onCompleted: (res) => {
-      console.log(200, res)
-    },
-    onError: (error) => {
-      console.log(error)
-    },
   })
 
   const handleChangeInput = useCallback((e: any) => {
     setFile(e.target.files[0])
-
-    // TODO: 複数ファイルに対応
   }, []);
 
   /**
    * ファイルをアップロードする
    */
-  const handleClickUploadFile = useCallback((e: any) => {
-    console.log('click');
+  const handleClickUploadFile = useCallback(() => {
     if (!file) {
       return;
     };
@@ -44,7 +33,7 @@ const UploadFileForm: FC = () => {
     uploadFile({
       variables: { file: file, createFileInDirectory: true },
     })
-  }, [file]);
+  }, [file, uploadFile]);
 
   return (
     <div className='text-center'>

@@ -17,7 +17,7 @@ export class AppResolver {
     @Args({ name: 'createFileInDirectory', type: () => Boolean })
     createFileInDirectory: boolean
   ) {
-    console.log('UPLOAD_IMAGE_CALLED', {
+    console.log('UPLOAD IMAGE CALLED', {
       file,
       createFileInDirectory,
     });
@@ -33,25 +33,25 @@ export class AppResolver {
           .createReadStream()
           .pipe(createWriteStream(`${dirPath}/${file.filename}`))
           .on('finish', () => {
-            console.log('IMAGE_CREATED_IN_DIRECTORY');
+            console.log('IMAGE CREATED IN DIRECTORY');
             resolve(true);
           })
           .on('error', (error) => {
-            console.log('IMAGE_UPLOAD_ERROR', error);
+            console.log('IMAGE UPLOAD ERROR', error);
             reject(false);
           });
       } else {
         file
           .createReadStream()
           .on('data', (data) => {
-            console.log('DATE_FROM_STREAM', data);
+            console.log('DATE FROM STREAM', data);
           })
           .on('end', () => {
-            console.log('END_OF_STREAM');
+            console.log('END OF STREAM');
             resolve(true);
           })
           .on('error', (error) => {
-            console.log('IMAGE_UPLOAD_ERROR', error);
+            console.log('IMAGE UPLOAD ERROR', error);
             reject(false);
           });
       }
